@@ -1,0 +1,55 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class TaxonomyNode {
+    private int data;
+    private int level;
+    private TaxonomyNode parent = null;
+    private List<TaxonomyNode> children = new ArrayList<>();
+
+    public TaxonomyNode(int data) {
+        this.data = data;
+    }
+
+    public int getData() {
+        return data;
+    }
+
+    public void setData(int data) {
+        this.data = data;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public TaxonomyNode getParent() {
+        return parent;
+    }
+
+    public void setParent(TaxonomyNode parent) {
+        this.parent = parent;
+    }
+
+    public List<TaxonomyNode> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<TaxonomyNode> children) {
+        this.children = children;
+    }
+
+    public TaxonomyNode addChildren(TaxonomyNode child) {
+        child.setParent(this);
+        this.children.add(child);
+        return child;
+    }
+
+    public void addChildren(List<TaxonomyNode> children) {
+        children.forEach(child->child.setParent(this));
+        this.children.addAll(children);
+    }
+}
