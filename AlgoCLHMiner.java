@@ -300,14 +300,14 @@ public class AlgoCLHMiner {
 		List<Element> list = UtilityList.getElement();
 			//System.out.println("tuList: " + decryption(UtilityList.item));
 			System.out.println(decryption(UtilityList.item));
-			for(Element element : list) {
-				System.out.println((element.tid + 1) + "   " + element.iutils + "   " + element.rutils);
-			}
-			for(UtilityList children : UtilityList.getChild()) {
-				System.out.print(decryption(children.item) + "    ");
-			}
-			System.out.println("\nGWU: " + UtilityList.GWU);
-			System.out.println("======================================");
+			// for(Element element : list) {
+			// 	System.out.println((element.tid + 1) + "   " + element.iutils + "   " + element.rutils);
+			// }
+			// for(UtilityList children : UtilityList.getChild()) {
+			// 	System.out.print(decryption(children.item) + "    ");
+			// }
+			// System.out.println("\nGWU: " + UtilityList.GWU);
+			// System.out.println("======================================");
 	}
 
 	public String decryption(Integer data) {
@@ -349,7 +349,27 @@ public class AlgoCLHMiner {
 	 * @param ULs the utility lists of some extensions of the prefix
 	 * @throws IOException 
 	 */
+	int abc = 1;
+	int xyz = 1;
 	private void SearchTree(int[] prefix, int prefixLength, UtilityList pUL, List<UtilityList> ULs) throws IOException {
+		// In ra pUL và ULs
+		System.out.println("-----------------------------In ra pUL và ULs: " + abc);
+		abc++;
+		System.out.print("Tien to ne: ");
+		for (int i = 0; i < prefixLength; i++) {
+			System.out.print(decryption2(prefix[i]));
+		}
+
+		System.out.println("\nTruoc no ne: ");
+		if(pUL != null) {
+			//System.out.print(decryption2(prefix[j]) + "   ");
+			printUtilityList(pUL);
+		}
+		System.out.println("\nList ne: ");
+		for (UtilityList utilityList : ULs) {
+			printUtilityList(utilityList);
+		}
+
 		for (int i = 0; i < ULs.size(); i++) {
 			UtilityList X = ULs.get(i);
 			candidate++;
@@ -358,13 +378,16 @@ public class AlgoCLHMiner {
 				/*
 				 * for (int j = 0; j < prefixLength; j++) { System.out.print(prefix[j]+" "); }
 				 */
+				System.out.print("+++++++++++++++++++++++++In ra CLHUI nè: " + xyz);
+				xyz++;
 				for(int j = 0; j<prefixLength; j++) {
 					writer.write(prefix[j] + " ");
-					//System.out.print(decryption2(prefix[j]) + "   ");
+					System.out.print(decryption2(prefix[j]) + "   ");
 				}
 				writer.write(X.item + " #UTIL: " + X.sumIutils);
 				writer.newLine();
-				//printUtilityList(X);
+				printUtilityList(X);
+				System.out.println();
 			}
 			// else {
 			// 	for(int j = 0; j<prefixLength; j++) {
